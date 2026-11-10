@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex" />
+<title>ThinkTrail Pro</title>
+<link rel="icon" href="../assets/favicon.png" />
+<style>
+  :root { --bg: #faf9f6; --surface: #f1efe9; --ink: #1b1a17; --ink-2: #57544c; --ink-3: #7d7a71; --line: rgba(27,26,23,.1); --brand: #17a873; --bad: #b42318; }
+  @media (prefers-color-scheme: dark) { :root { --bg: #141412; --surface: #1e1d1a; --ink: #edebe5; --ink-2: #b4b1a7; --ink-3: #8d8a80; --line: rgba(237,235,229,.12); --brand: #22c088; --bad: #ff6b5e; } }
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: var(--bg); color: var(--ink); font: 17px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; padding: 24px; }
+  main { max-width: 520px; width: 100%; text-align: center; }
+  img { width: 72px; height: 72px; }
+  h1 { font-size: 30px; letter-spacing: -.02em; margin: 18px 0 8px; }
+  #tt-status { color: var(--ink-2); margin: 0 0 22px; }
+  html[data-tt-state="done"] #tt-status { color: var(--brand); font-weight: 600; }
+  html[data-tt-state="error"] #tt-status { color: var(--bad); }
+  .key { display: none; background: var(--surface); border-radius: 12px; padding: 14px; text-align: left; }
+  html:not([data-tt-state="done"]) .key.has { display: block; }
+  .key small { color: var(--ink-3); display: block; margin-bottom: 6px; }
+  .row { display: flex; gap: 8px; }
+  code { flex: 1; min-width: 0; overflow-wrap: anywhere; font: 13.5px ui-monospace, SFMono-Regular, Menlo, monospace; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; }
+  button { font: inherit; font-weight: 600; border: 0; border-radius: 8px; padding: 8px 14px; background: var(--ink); color: var(--bg); cursor: pointer; }
+  a { color: inherit; }
+  .fine { color: var(--ink-3); font-size: 14px; margin-top: 22px; }
+</style>
+</head>
+<body>
+<main>
+  <img src="../assets/logo.svg" alt="" />
+  <h1>Thanks for getting ThinkTrail Pro</h1>
+  <!-- The ThinkTrail extension updates this line when it activates Pro. -->
+  <p id="tt-status">Open this page in the Chrome profile where ThinkTrail is installed, and Pro turns on by itself.</p>
+  <div class="key" id="key">
+    <small>Your license key, also in your email. Paste it in ThinkTrail → History → Settings → ThinkTrail Pro.</small>
+    <div class="row"><code id="key-text"></code><button type="button" id="copy">Copy</button></div>
+  </div>
+  <p class="fine"><a href="../">Back to ThinkTrail</a></p>
+</main>
+<script>
+  const key = (new URLSearchParams(location.search).get("license_key") || "").split(",")[0].trim();
+  if (key) {
+    document.getElementById("key").classList.add("has");
+    document.getElementById("key-text").textContent = key;
+    document.getElementById("copy").onclick = async (e) => {
+      await navigator.clipboard.writeText(key);
+      e.target.textContent = "Copied";
+    };
+  }
+</script>
+</body>
+</html>
