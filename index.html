@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ThinkTrail: see where your browsing time goes</title>
+<meta name="description" content="A Chrome extension: say what a session is for, press Record, and see how much of your time served that goal. Analysis can run on your own computer with Chrome's built-in AI." />
+<meta property="og:title" content="ThinkTrail" />
+<meta property="og:description" content="Say what a session is for. See where your time went." />
+<meta property="og:image" content="assets/report.png" />
+<link rel="icon" href="assets/favicon.png" />
+<style>
+  :root {
+    --bg: #faf9f6; --surface: #f1efe9; --ink: #1b1a17; --ink-2: #57544c; --ink-3: #7d7a71; --line: rgba(27,26,23,.1);
+    --brand: #17a873; --brand-ink: #fff; --on: #1baf7a; --sup: #2a78d6; --off: #eb6834;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #141412; --surface: #1e1d1a; --ink: #edebe5; --ink-2: #b4b1a7; --ink-3: #8d8a80; --line: rgba(237,235,229,.12); --brand: #22c088; --on: #199e70; --sup: #3987e5; --off: #d95926; }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, sans-serif; }
+  a { color: inherit; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  nav { display: flex; align-items: center; justify-content: space-between; padding: 20px 0; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: -.01em; text-decoration: none; }
+  .brand img { width: 28px; height: 28px; }
+  .links { display: flex; gap: 22px; font-size: 15px; color: var(--ink-2); }
+  .links a { text-decoration: none; } .links a:hover { color: var(--ink); }
+  .btn { display: inline-flex; align-items: center; gap: 8px; background: var(--ink); color: var(--bg); text-decoration: none; font-weight: 650; padding: 13px 20px; border-radius: 11px; font-size: 16px; }
+  .btn.brand-btn { background: var(--brand); color: var(--brand-ink); }
+  .btn.ghost { background: var(--surface); color: var(--ink); }
+  .hero { text-align: center; padding: 56px 0 40px; }
+  h1 { font-size: clamp(38px, 6vw, 64px); line-height: 1.04; letter-spacing: -.035em; margin: 0 auto 18px; max-width: 13em; }
+  .lede { font-size: 20px; color: var(--ink-2); max-width: 36em; margin: 0 auto 28px; }
+  .ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .fine { color: var(--ink-3); font-size: 14px; margin-top: 14px; }
+  .video { margin: 44px auto 0; max-width: 960px; border-radius: 18px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,.16), 0 2px 10px rgba(0,0,0,.06); background: #000; }
+  .video video { display: block; width: 100%; height: auto; }
+  section { padding: 72px 0; border-top: 1px solid var(--line); }
+  h2 { font-size: clamp(28px, 4vw, 38px); letter-spacing: -.025em; line-height: 1.1; margin: 0 0 10px; }
+  .sub { color: var(--ink-2); font-size: 18px; margin: 0 0 36px; max-width: 40em; }
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .step { background: var(--surface); border-radius: 16px; padding: 22px; }
+  .step .n { width: 28px; height: 28px; border-radius: 50%; background: var(--ink); color: var(--bg); display: grid; place-items: center; font-weight: 700; font-size: 14px; margin-bottom: 12px; }
+  .step b { display: block; font-size: 18px; margin-bottom: 4px; }
+  .step p { margin: 0; color: var(--ink-2); font-size: 15.5px; }
+  .feature { display: grid; grid-template-columns: 1fr 1.25fr; gap: 48px; align-items: center; margin-bottom: 64px; }
+  .feature:last-child { margin-bottom: 0; }
+  .feature.flip { grid-template-columns: 1.25fr 1fr; } .feature.flip .copy { order: 2; }
+  .feature h3 { font-size: 26px; letter-spacing: -.02em; margin: 0 0 10px; }
+  .feature p { color: var(--ink-2); margin: 0 0 12px; }
+  .shot { border-radius: 14px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 18px 50px rgba(0,0,0,.08); background: var(--bg); }
+  .shot img { display: block; width: 100%; height: auto; }
+  .shot.small { max-width: 380px; justify-self: center; }
+  .legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 14.5px; color: var(--ink-2); margin-top: 6px; }
+  .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: 0; }
+  ol.install { counter-reset: s; list-style: none; padding: 0; margin: 0; max-width: 760px; }
+  ol.install li { counter-increment: s; position: relative; padding: 0 0 22px 52px; }
+  ol.install li::before { content: counter(s); position: absolute; left: 0; top: -2px; width: 32px; height: 32px; border-radius: 50%; background: var(--surface); display: grid; place-items: center; font-weight: 700; }
+  ol.install b { display: block; }
+  ol.install p { margin: 2px 0 0; color: var(--ink-2); }
+  code, kbd { font: 14px ui-monospace, SFMono-Regular, Menlo, monospace; background: var(--surface); padding: 2px 6px; border-radius: 6px; }
+  .routes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .route { border: 1px solid var(--line); border-radius: 16px; padding: 22px; }
+  .route .tag { font-size: 12px; font-weight: 650; letter-spacing: .05em; text-transform: uppercase; color: var(--ink-3); }
+  .route h3 { margin: 6px 0 8px; font-size: 20px; }
+  .route p { margin: 0 0 8px; color: var(--ink-2); font-size: 15.5px; }
+  .note { background: var(--surface); border-radius: 14px; padding: 18px 20px; color: var(--ink-2); font-size: 15.5px; margin-top: 24px; max-width: 760px; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  ul.plain { padding-left: 20px; margin: 0; } ul.plain li { margin: 8px 0; color: var(--ink-2); }
+  details { border-bottom: 1px solid var(--line); padding: 16px 0; max-width: 820px; }
+  summary { cursor: pointer; font-weight: 600; font-size: 17px; }
+  details p { color: var(--ink-2); margin: 10px 0 0; }
+  footer { padding: 40px 0 64px; color: var(--ink-3); font-size: 14px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+  @media (max-width: 860px) {
+    .steps, .routes, .two { grid-template-columns: 1fr; }
+    .feature, .feature.flip { grid-template-columns: 1fr; gap: 24px; } .feature.flip .copy { order: 0; }
+    .links { display: none; }
+    section { padding: 56px 0; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a class="brand" href="#"><img src="assets/logo.svg" alt="" />ThinkTrail</a>
+    <div class="links"><a href="#how">How it works</a><a href="#install">Install</a><a href="#use">Using it</a><a href="#privacy">Privacy</a><a href="#faq">FAQ</a></div>
+  </nav>
+
+  <header class="hero">
+    <h1>See where your browsing time actually goes.</h1>
+    <p class="lede">Say what a session is for, press Record, and browse. When you stop, ThinkTrail shows how much of your time served that goal, what pulled you away, and study notes from what you read.</p>
+    <div class="ctas">
+      <a class="btn brand-btn" href="downloads/thinktrail-1.0.0.zip" download>Download for Chrome</a>
+      <a class="btn ghost" href="#install">How to install</a>
+    </div>
+    <p class="fine">Free. Version 1.0.0 for desktop Chrome. Not on the Chrome Web Store yet, so it installs in a minute by hand.</p>
+    <div class="video">
+      <video src="assets/demo.mp4" poster="assets/demo-poster.jpg" controls playsinline preload="none" aria-label="A 38-second tour of ThinkTrail"></video>
+    </div>
+  </header>
+
+  <section id="how">
+    <h2>Three steps, then it stays out of your way</h2>
+    <p class="sub">ThinkTrail only records when you ask it to, and only in Chrome.</p>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><b>Say what it's for</b><p>Click the toolbar icon or press <kbd>⌘⇧K</kbd> (<kbd>Ctrl+Shift+K</kbd> on Windows) and write your goal, like "Learn how GPUs schedule warps". Or leave it blank to just track your time.</p></div>
+      <div class="step"><div class="n">2</div><b>Browse normally</b><p>It notes which pages you visit and for how long. Step away and it pauses by itself; come back and it carries on.</p></div>
+      <div class="step"><div class="n">3</div><b>Stop and see the report</b><p>Choose where the analysis runs, and get your useful time, what you did, where you drifted, and notes.</p></div>
+    </div>
+  </section>
+
+  <section id="features">
+    <div class="feature">
+      <div class="copy">
+        <h3>One number: how much of your time served the goal</h3>
+        <p>Every activity gets a label, and the timeline shows the whole session at a glance. If a label is wrong, change it, and the numbers update.</p>
+        <div class="legend"><span><i style="background:var(--on)"></i>On goal</span><span><i style="background:var(--sup)"></i>Supporting</span><span><i style="background:var(--off)"></i>Off goal</span></div>
+      </div>
+      <div class="shot"><img src="assets/report.png" alt="A report showing 82% useful time, a colored timeline, sub-goals and activities" loading="lazy" /></div>
+    </div>
+    <div class="feature flip">
+      <div class="copy">
+        <h3>Notes from what you actually read</h3>
+        <p>Key takeaways, terms and open questions, written from the pages that served your goal. Download them as Markdown for Obsidian, Notion or anywhere else.</p>
+      </div>
+      <div class="shot"><img src="assets/notes.png" alt="Study notes with takeaways, key terms and an open question" loading="lazy" /></div>
+    </div>
+    <div class="feature">
+      <div class="copy">
+        <h3>No goal? See where the time went</h3>
+        <p>Record without a goal and the report groups your time into themes, and into focused work, admin and leisure. No judgment, just the picture.</p>
+      </div>
+      <div class="shot"><img src="assets/open.png" alt="A report of a session without a goal, showing time by theme" loading="lazy" /></div>
+    </div>
+    <div class="feature flip">
+      <div class="copy">
+        <h3>Your month, in one place</h3>
+        <p>History shows your useful time by day, the trend across sessions, and the sites you drift to most.</p>
+      </div>
+      <div class="shot"><img src="assets/history.png" alt="The History page with a month calendar, a trend chart and drift sites" loading="lazy" /></div>
+    </div>
+    <p class="fine">Screenshots use sample data.</p>
+  </section>
+
+  <section id="install">
+    <h2>Install it</h2>
+    <p class="sub">About a minute. You need desktop Chrome, or another Chromium browser such as Edge, Brave or Arc.</p>
+    <ol class="install">
+      <li><b>Download and unzip</b><p><a href="downloads/thinktrail-1.0.0.zip" download>thinktrail-1.0.0.zip</a>, then double-click it to get a <code>thinktrail-1.0.0</code> folder. Keep that folder somewhere permanent, such as Documents: Chrome loads ThinkTrail from it.</p></li>
+      <li><b>Open the extensions page</b><p>Go to <code>chrome://extensions</code> and turn on <b style="display:inline">Developer mode</b> in the top-right corner.</p></li>
+      <li><b>Load it</b><p>Click <b style="display:inline">Load unpacked</b> and choose the unzipped folder, the one that contains <code>manifest.json</code>.</p></li>
+      <li><b>Pin it</b><p>Click the puzzle-piece icon in the toolbar and pin ThinkTrail, so it's one click away.</p></li>
+    </ol>
+    <div class="note">Updating: download the new zip, replace the folder's contents, and click the reload arrow on ThinkTrail's card in <code>chrome://extensions</code>. Your sessions stay where they are.</div>
+  </section>
+
+  <section id="use">
+    <h2>Using it</h2>
+    <div class="feature" style="margin-bottom:40px">
+      <div class="copy">
+        <h3>Starting a session</h3>
+        <p>Press <kbd>⌘⇧K</kbd> or click the icon, write what the session is for, and press Enter. A specific goal gets a better report: "Compare PPO and DQN for my project" beats "research".</p>
+        <p>Pause and Stop are in the same popup. Time away from Chrome counts as away. After 15 minutes away the session pauses by itself, and after 30 more it ends. You can continue it from the report.</p>
+      </div>
+      <div class="shot small"><img src="assets/popup.png" alt="The ThinkTrail popup with a goal typed in and a Record button" loading="lazy" /></div>
+    </div>
+
+    <h3 style="font-size:24px;margin:0 0 6px">Analyzing a session</h3>
+    <p class="sub" style="margin-bottom:24px">Nothing is analyzed until you choose where. Pick whichever suits you on the report page.</p>
+    <div class="routes">
+      <div class="route"><div class="tag">Private and free</div><h3>On this computer</h3><p>Uses Gemini Nano, the AI built into Chrome. Nothing leaves your computer. Chrome downloads the model once, the first time.</p><p class="fine" style="margin:0">Needs Chrome 138 or later, about 22 GB of free disk space, and 16 GB of RAM or a GPU with more than 4 GB of memory.</p></div>
+      <div class="route"><div class="tag">Works anywhere</div><h3>Another AI</h3><p>Click <b>Copy for another AI</b>, paste it into ChatGPT, Claude or Gemini, then paste the answer back into the report.</p><p class="fine" style="margin:0">Use this if your computer can't run Chrome's built-in AI.</p></div>
+      <div class="route"><div class="tag">For developers</div><h3>Claude Code</h3><p>Sends the session to Claude Code through a small local bridge, and Claude writes the analysis and notes.</p><p class="fine" style="margin:0">Needs the bridge from the source code, which isn't in this download yet.</p></div>
+    </div>
+  </section>
+
+  <section id="privacy">
+    <div class="two">
+      <div>
+        <h2>Private by design</h2>
+        <p class="sub">Your browsing history is yours. ThinkTrail is built so it stays that way.</p>
+      </div>
+      <ul class="plain">
+        <li>Sessions are stored only in your browser. There's no ThinkTrail account and no server.</li>
+        <li>It records only while you're recording, never in the background.</li>
+        <li>It counts clicks, keys and scrolling, but never stores what you type, where your cursor is, or anything on password pages.</li>
+        <li>On-device analysis sends nothing anywhere. Text leaves your computer only when you copy it to another AI or send it to Claude Code.</li>
+        <li>Add sites to the excluded list in Settings, and ThinkTrail records only the time spent on them.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="faq">
+    <h2>Questions</h2>
+    <details><summary>Why isn't it on the Chrome Web Store?</summary><p>It will be. Until then, loading it by hand is the quickest way to try it, and it's the same extension.</p></details>
+    <details><summary>Chrome warns about Developer mode extensions. Is that a problem?</summary><p>Chrome shows that warning for any extension loaded by hand. ThinkTrail asks for access to pages so it can tell which page you're on while you record. It doesn't send your data anywhere unless you choose an analysis route that does.</p></details>
+    <details><summary>Does it work on my phone?</summary><p>No. Chrome extensions only run on desktop Chrome and other desktop Chromium browsers.</p></details>
+    <details><summary>Does it see other apps?</summary><p>No, only Chrome. Time in other apps counts as away.</p></details>
+    <details><summary>Something looks wrong in a report.</summary><p>Change any activity's label and the numbers update. Or press <b>Analyze again</b> at the bottom of the report.</p></details>
+    <details><summary>How do I report a bug or ask for a feature?</summary><p>Open an issue on <a href="https://github.com/sirish123/ThinkTrail-Public/issues">GitHub</a>.</p></details>
+  </section>
+
+  <footer>
+    <span>ThinkTrail 1.0.0</span>
+    <span><a href="https://github.com/sirish123/ThinkTrail-Public">GitHub</a> · Gemini and Chrome are trademarks of Google LLC.</span>
+  </footer>
+</div>
+</body>
+</html>
