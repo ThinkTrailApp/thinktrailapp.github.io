@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Privacy Policy · ThinkTrail</title>
+<meta name="description" content="How ThinkTrail handles your data: sessions stay in your browser, and nothing is sold or shared." />
+<link rel="icon" href="../assets/favicon.png" />
+<style>
+  :root { --bg: #faf9f6; --surface: #f1efe9; --ink: #1b1a17; --ink-2: #4f4c45; --ink-3: #7d7a71; --line: rgba(27,26,23,.1); }
+  @media (prefers-color-scheme: dark) { :root { --bg: #141412; --surface: #1e1d1a; --ink: #edebe5; --ink-2: #c2bfb5; --ink-3: #8d8a80; --line: rgba(237,235,229,.12); } }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px 72px; }
+  nav { display: flex; align-items: center; justify-content: space-between; padding: 20px 0 8px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; text-decoration: none; color: inherit; }
+  .brand img { width: 26px; height: 26px; }
+  h1 { font-size: clamp(32px, 5vw, 44px); letter-spacing: -.03em; line-height: 1.1; margin: 40px 0 6px; }
+  .updated { color: var(--ink-3); margin: 0 0 28px; }
+  .summary { background: var(--surface); border-radius: 14px; padding: 18px 22px; margin-bottom: 36px; }
+  .summary ul { margin: 6px 0 0; padding-left: 20px; } .summary li { margin: 4px 0; }
+  h2 { font-size: 22px; letter-spacing: -.01em; margin: 40px 0 8px; }
+  h3 { font-size: 17px; margin: 22px 0 4px; }
+  p, li { color: var(--ink-2); }
+  ul { padding-left: 20px; }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 15.5px; }
+  th, td { text-align: left; vertical-align: top; padding: 10px 8px; border-bottom: 1px solid var(--line); }
+  th { color: var(--ink); font-weight: 650; }
+  td { color: var(--ink-2); }
+  a { color: inherit; }
+  footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--ink-3); font-size: 14px; }
+  @media (max-width: 600px) { table, thead, tbody, tr, th, td { display: block; } thead { display: none; } td { border: 0; padding: 2px 0; } tr { border-bottom: 1px solid var(--line); padding: 10px 0; } td:first-child { font-weight: 650; color: var(--ink); } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav><a class="brand" href="../"><img src="../assets/logo.svg" alt="" />ThinkTrail</a></nav>
+
+  <h1>Privacy Policy</h1>
+  <p class="updated">Last updated November 10, 2026</p>
+
+  <div class="summary">
+    <b>The short version</b>
+    <ul>
+      <li>ThinkTrail records only while you're recording a session.</li>
+      <li>Your sessions are stored in your own browser. ThinkTrail has no account system and no server that receives your browsing data.</li>
+      <li>Your data leaves your computer only when you choose to send it: to an AI you pick, or to Dodo Payments when you buy or activate Pro.</li>
+      <li>We don't sell your data, show ads, or use analytics or tracking.</li>
+    </ul>
+  </div>
+
+  <p>This policy explains what the ThinkTrail browser extension ("ThinkTrail", "we") collects, where it goes, and the choices you have. It covers the extension and this website, thinktrailapp.github.io.</p>
+
+  <h2>1. What ThinkTrail records</h2>
+  <p>Nothing is recorded until you start a session, and recording stops when you pause or stop it. While a session is recording, ThinkTrail records the following about the tab you're using:</p>
+  <table>
+    <thead><tr><th>Data</th><th>Details</th></tr></thead>
+    <tbody>
+      <tr><td>Your session goal</td><td>The text you write when you start a session. It can be empty.</td></tr>
+      <tr><td>Pages you visit</td><td>The page address, title and site, and when you arrived and left.</td></tr>
+      <tr><td>Time</td><td>Time on each page, time away from Chrome, and whether a tab was playing audio.</td></tr>
+      <tr><td>Page text</td><td>A short excerpt (up to 600 characters) after 20 seconds on a page, and up to 4,000 characters of its main text after 30 seconds. ThinkTrail uses this to understand what a page was about and to write study notes. It never reads text from a page that has a password field.</td></tr>
+      <tr><td>Interaction counts</td><td>How many clicks, keystrokes and scrolls happened, how far you scrolled, and how far your pointer traveled. ThinkTrail counts these but never records what you typed, which keys you pressed, the contents of any form field, or where your pointer was.</td></tr>
+    </tbody>
+  </table>
+  <p>On sites you add to the <b>Excluded sites</b> list in Settings, ThinkTrail records only the time spent there: no address, title or text.</p>
+
+  <h2>2. Where your data is stored</h2>
+  <p>Sessions, reports, notes and settings are stored locally in your browser, in its extension storage. They aren't uploaded to us; we don't operate a server that receives them.</p>
+  <p>If you use the optional Claude Code route (section 3), session summaries are also written to a folder on your own computer, <code>~/.thinktrail/sessions</code>, so Claude Code can read them.</p>
+
+  <h2>3. Analysis: you choose where it runs</h2>
+  <p>ThinkTrail never analyzes a session until you choose how. Each option handles your data differently:</p>
+  <h3>On this computer (Gemini Nano)</h3>
+  <p>Analysis runs with the AI model built into Chrome, on your device. Your session data isn't sent anywhere. The first time, Chrome downloads the model from Google, and Google's terms for Chrome apply to that download.</p>
+  <h3>Another AI</h3>
+  <p>ThinkTrail puts the session summary and instructions on your clipboard, and you paste them into the AI service of your choice, such as ChatGPT, Claude or Gemini. That service's privacy policy then applies to what you paste. ThinkTrail doesn't send anything itself.</p>
+  <h3>Claude Code</h3>
+  <p>If you set up Claude Code and press <b>Send to Claude Code</b>, the session summary is handed to a small program running on your computer. Claude Code reads it and sends it to Anthropic to produce the analysis, under Anthropic's terms and privacy policy.</p>
+  <p>Session summaries sent for analysis leave out query strings from page addresses, and pages from excluded sites appear without any detail.</p>
+
+  <h2>4. ThinkTrail Pro and payments</h2>
+  <p>ThinkTrail Pro is sold through <a href="https://dodopayments.com">Dodo Payments</a>, which acts as the merchant of record. When you buy Pro, you enter your payment details and email address on Dodo's checkout page, never in ThinkTrail. Dodo's privacy policy covers that information. We receive the sale record from Dodo, including your email address, so we can support your purchase.</p>
+  <p>To turn Pro on and keep it working, the extension sends Dodo your license key and a device label such as "ThinkTrail on MacIntel". It does this when you activate a key, and then at most once a day while you use ThinkTrail, to check the key is still valid. Dodo's reply includes the email address on your purchase, which the extension stores locally to show which account Pro belongs to.</p>
+  <p>After checkout, Dodo sends you to our activation page with your license key in the page address. The page passes the key to the extension in your browser and doesn't send it anywhere else.</p>
+
+  <h2>5. This website</h2>
+  <p>This website is hosted on GitHub Pages. GitHub may log technical information such as your IP address when you visit, under <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub's privacy statement</a>. We don't add analytics, cookies or trackers to the site.</p>
+
+  <h2>6. What we don't do</h2>
+  <ul>
+    <li>We don't sell or rent your data, or share it with advertisers or data brokers.</li>
+    <li>We don't use your data for advertising, credit decisions or anything unrelated to ThinkTrail's purpose.</li>
+    <li>We don't run analytics or tracking in the extension.</li>
+  </ul>
+  <p>ThinkTrail's use of information complies with the <a href="https://developer.chrome.com/docs/webstore/program-policies/limited-use">Chrome Web Store User Data Policy</a>, including the Limited Use requirements.</p>
+
+  <h2>7. Why ThinkTrail needs its permissions</h2>
+  <ul>
+    <li><b>Access to the sites you visit:</b> to see which page you're on and measure time and reading while a session is recording.</li>
+    <li><b>Tabs:</b> to notice when you switch tabs or pages during a session.</li>
+    <li><b>Scripting:</b> to start and stop measuring on a page when recording starts and stops.</li>
+    <li><b>Idle:</b> to notice when you've stepped away, so away time isn't counted as browsing.</li>
+    <li><b>Storage and unlimited storage:</b> to keep your sessions in your browser.</li>
+    <li><b>Alarms:</b> to pause and end sessions on time after you've been away.</li>
+    <li><b>Favicon:</b> to show site icons in your reports.</li>
+  </ul>
+
+  <h2>8. Your choices and control</h2>
+  <ul>
+    <li><b>See your data:</b> every session is in History, and you can download a session's summary and notes from its report.</li>
+    <li><b>Delete a session:</b> press <b>Delete</b> at the bottom of its report.</li>
+    <li><b>Delete everything:</b> uninstall ThinkTrail, and Chrome removes all of its stored data. If you used the Claude Code route, also delete the <code>~/.thinktrail</code> folder.</li>
+    <li><b>Keep sites out:</b> add them to Excluded sites in Settings.</li>
+    <li><b>Pro on a computer:</b> use <b>Deactivate on this computer</b> in Settings to remove your license key from that device.</li>
+    <li><b>Purchase records:</b> to request access to or deletion of your purchase information, contact us (section 11) or Dodo Payments.</li>
+  </ul>
+
+  <h2>9. Children</h2>
+  <p>ThinkTrail isn't directed at children under 13, and we don't knowingly collect personal information from them.</p>
+
+  <h2>10. Changes to this policy</h2>
+  <p>If ThinkTrail starts handling data differently, for example by adding syncing to your phone, we'll update this page and change the date at the top before the change takes effect.</p>
+
+  <h2>11. Contact</h2>
+  <p>Questions about this policy or your data: open an issue on <a href="https://github.com/ThinkTrailApp/thinktrailapp.github.io/issues">GitHub</a>.</p>
+
+  <footer><a href="../">ThinkTrail</a> · Privacy Policy</footer>
+</div>
+</body>
+</html>
