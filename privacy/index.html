@@ -37,14 +37,16 @@
   <nav><a class="brand" href="../"><img src="../assets/logo.svg" alt="" />ThinkTrail</a></nav>
 
   <h1>Privacy Policy</h1>
-  <p class="updated">Last updated November 10, 2026</p>
+  <p class="updated">Last updated November 11, 2026</p>
 
   <div class="summary">
     <b>The short version</b>
     <ul>
       <li>ThinkTrail records only while you're recording a session.</li>
-      <li>Your sessions are stored in your own browser. ThinkTrail has no account system and no server that receives your browsing data.</li>
-      <li>Your data leaves your computer only when you choose to send it: to an AI you pick, or to Dodo Payments when you buy or activate Pro.</li>
+      <li>Your sessions are stored in your own browser. ThinkTrail has no account system.</li>
+      <li>When a session ends, it's analyzed with ThinkTrail's free credits unless you choose otherwise: the session goes to our server, which passes it to an AI and keeps none of it. You can switch to analysis on your own computer, where nothing leaves it.</li>
+      <li>Otherwise your data leaves your computer only when you send it: to an AI you pick, to Notion, or to Dodo Payments when you buy or activate Pro.</li>
+      <li>If you join the Pro waitlist on this website, we keep your email address to tell you when Pro launches, and nothing else.</li>
       <li>We don't sell your data, show ads, or use analytics or tracking.</li>
     </ul>
   </div>
@@ -66,14 +68,21 @@
   <p>On sites you add to the <b>Excluded sites</b> list in Settings, ThinkTrail records only the time spent there: no address, title or text.</p>
 
   <h2>2. Where your data is stored</h2>
-  <p>Sessions, reports, notes and settings are stored locally in your browser, in its extension storage. They aren't uploaded to us; we don't operate a server that receives them.</p>
+  <p>Sessions, reports, notes, flashcards, your review history and settings are stored locally in your browser, in its extension storage. They aren't uploaded to us. The only exception is analysis with ThinkTrail's free credits (section 3), whose server keeps nothing from the session.</p>
+  <h3>Sending to your notes app</h3>
+  <p>If you connect a <b>folder</b> (such as an Obsidian vault), ThinkTrail writes Markdown files into a ThinkTrail subfolder there, on your own computer. Chrome asks your permission before it can write there.</p>
+  <p>If you connect <b>Notion</b>, ThinkTrail sends your analyzed sessions (titles, goals, times, summaries, activities, notes, source links and flashcards) to the Notion page you choose, using the integration secret you paste. The secret is stored only in your browser. Notion's privacy policy covers what's stored in your workspace. Disconnecting in Settings stops all sending; pages already in Notion stay there until you delete them.</p>
   <p>If you use the optional Claude Code route (section 3), session summaries are also written to a folder on your own computer, <code>~/.thinktrail/sessions</code>, so Claude Code can read them.</p>
 
   <h2>3. Analysis: you choose where it runs</h2>
-  <p>ThinkTrail never analyzes a session until you choose how. Each option handles your data differently:</p>
+  <p>Out of the box, ThinkTrail analyzes each session automatically when it ends, using ThinkTrail's free credits. Settings → Analysis says so, and is where you can choose another method, or turn automatic analysis off so nothing is analyzed until you press Analyze. Automatic analysis only ever uses the method chosen there (or, as a fallback, your own computer). Each option handles your data differently:</p>
   <h3>On this computer (Gemini Nano)</h3>
   <p>Analysis runs with the AI model built into Chrome, on your device. Your session data isn't sent anywhere. The first time, Chrome downloads the model from Google, and Google's terms for Chrome apply to that download.</p>
-  <h3>Another AI</h3>
+  <h3>Your own AI key</h3>
+  <p>If you paste an API key from Anthropic (Claude), OpenAI or Google (Gemini), ThinkTrail sends the session summary, and for notes the text of the pages that served your goal, directly from your browser to that provider, using your key. Nothing passes through us. The key is stored only in your browser. The provider's terms and privacy policy apply, and you pay the provider for what you use.</p>
+  <h3>ThinkTrail free credits (the default)</h3>
+  <p>With free credits, ThinkTrail sends the session summary, and for notes the text of the pages that served your goal, to ThinkTrail's server, which runs on Cloudflare. The server passes it to an AI model on Cloudflare Workers AI and returns the answer to your browser. It doesn't store or log the content. To count free analyses it keeps only: a random id made by the extension for your install (not linked to your name or email), a short random id for each analyzed session, the number of sessions used this month, a one-way, salted fingerprint of your network (your IP address, or for IPv6 its network prefix), so new install ids don't mean new credits, and how much AI time each network and everyone used today. Monthly counts reset each month and daily ones each day. The server's logs record only sizes, timings and outcomes; Cloudflare's automatic request logs, which can include IP addresses, are turned off. Cloudflare processes the requests under its own privacy policy.</p>
+  <h3>A chat AI you already use</h3>
   <p>ThinkTrail puts the session summary and instructions on your clipboard, and you paste them into the AI service of your choice, such as ChatGPT, Claude or Gemini. That service's privacy policy then applies to what you paste. ThinkTrail doesn't send anything itself.</p>
   <h3>Claude Code</h3>
   <p>If you set up Claude Code and press <b>Send to Claude Code</b>, the session summary is handed to a small program running on your computer. Claude Code reads it and sends it to Anthropic to produce the analysis, under Anthropic's terms and privacy policy.</p>
@@ -86,6 +95,8 @@
 
   <h2>5. This website</h2>
   <p>This website is hosted on GitHub Pages. GitHub may log technical information such as your IP address when you visit, under <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub's privacy statement</a>. We don't add analytics, cookies or trackers to the site.</p>
+  <h3 id="waitlist">The Pro waitlist</h3>
+  <p>If you enter your email address in the waitlist form, it's sent to ThinkTrail's server on Cloudflare, which stores it with the date you joined. That's all: it isn't linked to your ThinkTrail install, your sessions or your network, and the server's logs don't record it. We use it only to email you when ThinkTrail Pro launches, with your free month. We don't share it with anyone except the service we use to send that email. Every email we send has a link that removes your address straight away, and you can also ask us to remove it (section 11). We delete the list once launch emails have gone out and the free-month offer has ended.</p>
 
   <h2>6. What we don't do</h2>
   <ul>
@@ -97,20 +108,21 @@
 
   <h2>7. Why ThinkTrail needs its permissions</h2>
   <ul>
-    <li><b>Access to the sites you visit:</b> to see which page you're on and measure time and reading while a session is recording.</li>
-    <li><b>Tabs:</b> to notice when you switch tabs or pages during a session.</li>
+    <li><b>Access to the sites you visit:</b> to see which page you're on and measure time and reading while a session is recording. Chrome asks for it the first time you press Record, not when you install. It also lets ThinkTrail reach Notion if you connect it; if you connect Notion before recording, Chrome asks for access to Notion alone.</li>
     <li><b>Scripting:</b> to start and stop measuring on a page when recording starts and stops.</li>
     <li><b>Idle:</b> to notice when you've stepped away, so away time isn't counted as browsing.</li>
     <li><b>Storage and unlimited storage:</b> to keep your sessions in your browser.</li>
     <li><b>Alarms:</b> to pause and end sessions on time after you've been away.</li>
+    <li><b>Notifications:</b> asked for together with site access, to nudge you, if you've turned nudges on, when you've spent a while on a distracting site during a session with a goal.</li>
     <li><b>Favicon:</b> to show site icons in your reports.</li>
+    <li><b>Offscreen:</b> to run analysis in the background with Chrome's built-in AI or your own Claude key, which need a hidden page, after a session ends.</li>
   </ul>
 
   <h2>8. Your choices and control</h2>
   <ul>
     <li><b>See your data:</b> every session is in History, and you can download a session's summary and notes from its report.</li>
     <li><b>Delete a session:</b> press <b>Delete</b> at the bottom of its report.</li>
-    <li><b>Delete everything:</b> uninstall ThinkTrail, and Chrome removes all of its stored data. If you used the Claude Code route, also delete the <code>~/.thinktrail</code> folder.</li>
+    <li><b>Delete everything:</b> press <b>Delete all sessions</b> in Settings, or uninstall ThinkTrail, and Chrome removes all of its stored data. If you used the Claude Code route, also delete the <code>~/.thinktrail</code> folder.</li>
     <li><b>Keep sites out:</b> add them to Excluded sites in Settings.</li>
     <li><b>Pro on a computer:</b> use <b>Deactivate on this computer</b> in Settings to remove your license key from that device.</li>
     <li><b>Purchase records:</b> to request access to or deletion of your purchase information, contact us (section 11) or Dodo Payments.</li>

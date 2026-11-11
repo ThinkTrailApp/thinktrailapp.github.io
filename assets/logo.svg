@@ -1,7 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
-  <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#22c088"/><stop offset="1" stop-color="#148f63"/></linearGradient></defs>
-  <rect width="128" height="128" rx="30" fill="url(#g)"/>
-  <path d="M28 102 C 28 74, 60 84, 62 62 S 78 38, 90 38" fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="round" stroke-dasharray="0 15"/>
-  <circle cx="94" cy="38" r="16" fill="#ffffff"/>
-  <circle cx="94" cy="38" r="6.5" fill="#18a273"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 120 120" role="img" aria-label="ThinkTrail"><rect width="120" height="120" rx="28" fill="#efc98f"/>
+  <path d="M28 41 H 92" stroke="#1b1a17" stroke-width="13" fill="none" stroke-linecap="round"/>
+  <path d="M60 41 V 52 C 60 62 46 63 46 73 C 46 84 61 84 60 97" stroke="#1b1a17" stroke-width="13" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path transform="translate(60 33) rotate(-128) scale(0.62)" d="M0 0 C 6 -10 20 -14 34 -10 C 28 4 14 8 0 0 Z" fill="#2fb37f"/><path transform="translate(60 33) rotate(-52) scale(0.62)" d="M0 0 C 6 -10 20 -14 34 -10 C 28 4 14 8 0 0 Z" fill="#1f8f63"/>
 </svg>
