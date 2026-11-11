@@ -4,11 +4,11 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>ThinkTrail: see where your browsing time goes</title>
-<meta name="description" content="A Chrome extension: say what a session is for, press Record, and see how much of your time served that goal, with study notes and flashcards sent to Obsidian or Notion. Free." />
+<meta name="description" content="A Chrome extension: say what a session is for, press Record, and see how much of your time served that goal, with study notes from what you read. Free." />
 <meta property="og:title" content="ThinkTrail" />
 <meta property="og:description" content="Say what a session is for. See where your time went." />
 <meta property="og:image" content="assets/report.png" />
-<link rel="icon" href="assets/favicon.png" />
+<link rel="icon" href="assets/favicon.png?v=2" />
 <style>
   :root {
     --bg: #faf9f6; --surface: #f1efe9; --ink: #1b1a17; --ink-2: #57544c; --ink-3: #7d7a71; --line: rgba(27,26,23,.1);
@@ -36,7 +36,8 @@
   .ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
   .fine { color: var(--ink-3); font-size: 14px; margin-top: 14px; }
   .video { margin: 44px auto 0; max-width: 960px; border-radius: 18px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,.16), 0 2px 10px rgba(0,0,0,.06); background: #000; }
-  .video video { display: block; width: 100%; height: auto; }
+  .video video, .video img { display: block; width: 100%; height: auto; }
+  .video.still { background: var(--bg); border: 1px solid var(--line); }
   section { padding: 72px 0; border-top: 1px solid var(--line); }
   h2 { font-size: clamp(28px, 4vw, 38px); letter-spacing: -.025em; line-height: 1.1; margin: 0 0 10px; }
   .sub { color: var(--ink-2); font-size: 18px; margin: 0 0 36px; max-width: 40em; }
@@ -95,19 +96,19 @@
 <div class="wrap">
   <nav>
     <a class="brand" href="#"><img src="assets/logo.svg" alt="" />ThinkTrail</a>
-    <div class="links"><a href="#how">How it works</a><a href="#install">Install</a><a href="#use">Using it</a><a href="#pro">Free Pro month</a><a href="privacy/">Privacy</a><a href="#faq">FAQ</a></div>
+    <div class="links"><a href="#how">How it works</a><a href="#install">Install</a><a href="#use">Using it</a><a href="#later">Coming later</a><a href="privacy/">Privacy</a><a href="#faq">FAQ</a></div>
   </nav>
 
   <header class="hero">
     <h1>See where your browsing time actually goes.</h1>
-    <p class="lede">Say what a session is for, press Record, and browse. When you stop, ThinkTrail shows how much of your time served that goal, what pulled you away, and study notes from what you read, sent straight to Obsidian or Notion.</p>
+    <p class="lede">Say what a session is for, press Record, and browse. When you stop, ThinkTrail shows how much of your time served that goal, what pulled you away, and study notes from what you read.</p>
     <div class="ctas">
       <span class="btn brand-btn" aria-disabled="true">Coming soon to the Chrome Web Store</span>
-      <a class="btn ghost" href="#pro">Get a free month of Pro</a>
+      <a class="btn ghost" href="#later">Hear about new features</a>
     </div>
     <p class="fine">Free. For desktop Chrome and other Chromium browsers.</p>
-    <div class="video">
-      <video src="assets/demo.mp4" poster="assets/demo-poster.jpg" controls playsinline preload="none" aria-label="A 38-second tour of ThinkTrail"></video>
+    <div class="video still">
+      <img src="assets/history.png" alt="ThinkTrail's History page: a month calendar colored by how focused each day was, the topics learned most, and the sites where the time went" />
     </div>
   </header>
 
@@ -132,9 +133,8 @@
     </div>
     <div class="feature flip">
       <div class="copy">
-        <h3>Notes from what you actually read, in your notes app</h3>
-        <p>Key takeaways, terms and open questions, written from the pages that served your goal. They go straight into your Obsidian vault, any Markdown folder, or Notion, with links between related ideas.</p>
-        <p>Each session also becomes flashcards. Review them in ThinkTrail's Learn tab, or in Obsidian with the Spaced Repetition plugin. Anything you add to a note yourself is kept.</p>
+        <h3>Notes from what you actually read</h3>
+        <p>Key takeaways, terms and open questions, written from the pages that served your goal. Download them as Markdown for Obsidian, Notion or anywhere else.</p>
       </div>
       <div class="shot"><img src="assets/notes.png" alt="Study notes with takeaways, key terms and an open question" loading="lazy" /></div>
     </div>
@@ -148,9 +148,10 @@
     <div class="feature flip">
       <div class="copy">
         <h3>Your month, in one place</h3>
-        <p>History shows your useful time by day, the trend across sessions, and the sites you drift to most.</p>
+        <p>History colors each day by how focused it was, and shows what you learned most, where the time went, and the sites you drift to.</p>
+        <p>Haven't recorded yet? Import a day from your Chrome history and see where it went.</p>
       </div>
-      <div class="shot"><img src="assets/history.png" alt="The History page with a month calendar, a trend chart and drift sites" loading="lazy" /></div>
+      <div class="shot"><img src="assets/history.png" alt="The History page with a month calendar colored by focus, topics learned and top sites" loading="lazy" /></div>
     </div>
     <p class="fine">Screenshots use sample data.</p>
   </section>
@@ -205,24 +206,24 @@
     </div>
   </section>
 
-  <section id="pro">
+  <section id="later">
     <div class="waitlist">
-      <h2>Everything is free while ThinkTrail is new</h2>
-      <p class="sub" style="margin:0">Notes, notes-app sync, flashcards and nudges are all included. A paid Pro plan will come later. Leave your email and you'll get your first month of Pro free when it launches.</p>
+      <h2>Coming later</h2>
+      <p class="sub" style="margin:0">Two things are on the way: sending every session and its notes to Obsidian, Logseq or Notion by itself, and flashcards made from your notes that come back just before you'd forget them. Leave your email to hear when they arrive.</p>
       <form id="waitlist-form" novalidate>
         <label class="trap" aria-hidden="true">Company <input type="text" name="company" tabindex="-1" autocomplete="off" /></label>
         <input type="email" name="email" required autocomplete="email" placeholder="you@example.com" aria-label="Email address" />
-        <button class="btn brand-btn" type="submit">Get my free month</button>
+        <button class="btn brand-btn" type="submit">Tell me when</button>
       </form>
       <p role="status" id="waitlist-status"></p>
-      <p class="fine" style="margin-top:4px">We'll email you once, when Pro launches. Nothing else, and every email has a link to leave the list. <a href="privacy/#waitlist">How we handle your email</a>.</p>
+      <p class="fine" style="margin-top:4px">We'll email you when they arrive. Nothing else, and every email has a link to leave the list. <a href="privacy/#waitlist">How we handle your email</a>.</p>
     </div>
   </section>
 
   <section id="faq">
     <h2>Questions</h2>
     <details><summary>When can I install it?</summary><p>As soon as the Chrome Web Store approves it. Watch the <a href="https://github.com/ThinkTrailApp/thinktrailapp.github.io">GitHub repository</a> to hear when it's live.</p></details>
-    <details><summary>Is it free?</summary><p>Yes. Everything is free for now. Free credits cover 15 analyzed sessions a month; analysis on your own computer or with your own AI key has no limit. A paid Pro plan will come later, and people on the <a href="#pro">list</a> get its first month free.</p></details>
+    <details><summary>Is it free?</summary><p>Yes. Free credits cover 15 analyzed sessions a month, and analysis on your own computer or with your own AI key has no limit.</p></details>
     <details><summary>What happens when my free credits run out?</summary><p>Sessions keep recording, and wait for analysis until the credits reset at the start of next month. Or switch to your own computer or your own AI key in Settings.</p></details>
     <details><summary>Why does it ask for access to the sites I visit?</summary><p>So it can tell which page you're on while you record. Chrome asks the first time you press Record, not at install. ThinkTrail records only while you're recording, and never reads the sites you exclude.</p></details>
     <details><summary>Does it work on my phone?</summary><p>No. Chrome extensions only run on desktop Chrome and other desktop Chromium browsers.</p></details>
@@ -237,7 +238,7 @@
   </footer>
 </div>
 <script>
-  // The Pro waitlist. Posts to ThinkTrail's server, which keeps the email and the date, nothing else.
+  // The waitlist for features coming later. Posts to ThinkTrail's server, which keeps the email and the date, nothing else.
   (() => {
     const form = document.getElementById("waitlist-form");
     const status = document.getElementById("waitlist-status");
@@ -257,7 +258,7 @@
         });
         if (res.ok) {
           form.reset();
-          say("You're on the list. We'll email you when Pro launches, with your free month.");
+          say("You're on the list. We'll email you when they arrive.");
         } else if (res.status === 400) say("That doesn't look like an email address.");
         else if (res.status === 429) say("Too many tries from this network. Try again in a minute.");
         else say("That didn't work. Try again later.");
