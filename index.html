@@ -74,6 +74,7 @@
   .waitlist input[type=email] { flex: 1 1 260px; min-width: 0; font: inherit; padding: 12px 14px; border-radius: 11px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); }
   .waitlist button { border: 0; cursor: pointer; font: inherit; font-weight: 650; }
   .waitlist button:disabled { opacity: .6; cursor: default; }
+  .pro-list li { margin: 6px 0; }
   .waitlist .trap { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
   .waitlist [role=status] { min-height: 1.6em; margin: 12px 0 0; color: var(--ink-2); font-size: 15.5px; }
   .note { background: var(--surface); border-radius: 14px; padding: 18px 20px; color: var(--ink-2); font-size: 15.5px; margin-top: 24px; max-width: 760px; }
@@ -96,7 +97,7 @@
 <div class="wrap">
   <nav>
     <a class="brand" href="#"><img src="assets/logo.svg" alt="" />ThinkTrail</a>
-    <div class="links"><a href="#how">How it works</a><a href="#install">Install</a><a href="#use">Using it</a><a href="#later">Coming later</a><a href="privacy/">Privacy</a><a href="#faq">FAQ</a></div>
+    <div class="links"><a href="#how">How it works</a><a href="#install">Install</a><a href="#use">Using it</a><a href="#later">Coming soon</a><a href="privacy/">Privacy</a><a href="#faq">FAQ</a></div>
   </nav>
 
   <header class="hero">
@@ -104,7 +105,7 @@
     <p class="lede">Say what a session is for, press Record, and browse. When you stop, ThinkTrail shows how much of your time served that goal, what pulled you away, and study notes from what you read.</p>
     <div class="ctas">
       <span class="btn brand-btn" aria-disabled="true">Coming soon to the Chrome Web Store</span>
-      <a class="btn ghost" href="#later">Hear about new features</a>
+      <a class="btn ghost" href="#later">Coming soon: Pro</a>
     </div>
     <p class="fine">Free. For desktop Chrome and other Chromium browsers.</p>
     <div class="video">
@@ -180,11 +181,10 @@
 
     <h3 style="font-size:24px;margin:0 0 6px">Analyzing a session</h3>
     <p class="sub" style="margin-bottom:24px">Each session is analyzed when it ends, with free credits unless you choose otherwise. Change the method, or switch to pressing Analyze yourself, in Settings.</p>
-    <div class="routes four">
-      <div class="route lead"><div class="tag">The default · no setup</div><h3>Free credits</h3><p>ThinkTrail's server analyzes it with an open AI model on Cloudflare and keeps none of it. 15 sessions a month, free.</p></div>
+    <div class="routes">
+      <div class="route lead"><div class="tag">The default · no setup</div><h3>Free credits</h3><p>ThinkTrail's own server analyzes it and keeps none of it. 15 sessions a month, free.</p></div>
       <div class="route"><div class="tag">Private and free</div><h3>On this computer</h3><p>Uses Gemini Nano, the AI built into Chrome. Nothing leaves your computer, and there's no limit. Chrome downloads the model once, the first time.</p><p class="fine" style="margin:0">Needs Chrome 138 or later, about 22 GB of free disk space, and 16 GB of RAM or a GPU with more than 4 GB of memory.</p></div>
       <div class="route"><div class="tag">Your choice of model</div><h3>Your own AI key</h3><p>Paste a key from Anthropic (Claude), OpenAI or Google (Gemini). Sessions go straight from your browser to that provider, and you pay them for what you use.</p></div>
-      <div class="route"><div class="tag">For developers</div><h3>Claude Code</h3><p>Sends the session to Claude Code through a small local bridge, and Claude writes the analysis and notes.</p></div>
     </div>
     <p class="fine">Any report can also be copied into a chat AI you already use, such as ChatGPT, Claude or Gemini.</p>
   </section>
@@ -208,15 +208,22 @@
 
   <section id="later">
     <div class="waitlist">
-      <h2>Coming later</h2>
-      <p class="sub" style="margin:0">Two things are on the way: sending every session and its notes to Obsidian, Logseq or Notion by itself, and flashcards made from your notes that come back just before you'd forget them. Leave your email to hear when they arrive.</p>
+      <h2>Coming soon: ThinkTrail Pro</h2>
+      <p class="sub" style="margin:0 0 14px">Everything above stays free. Pro adds:</p>
+      <ul class="plain pro-list">
+        <li><b>Notes-app sync.</b> Every session and its notes go to Obsidian, Logseq or Notion by themselves.</li>
+        <li><b>Flashcards.</b> Made from your notes, and brought back just before you'd forget them.</li>
+        <li><b>Claude Code.</b> Hand sessions to Claude Code, which writes the analysis and notes.</li>
+        <li><b>More AI analysis.</b> Many more analyzed sessions each month than the free 15.</li>
+      </ul>
+      <p class="sub" style="margin:14px 0 0">Leave your email to hear when it arrives.</p>
       <form id="waitlist-form" novalidate>
         <label class="trap" aria-hidden="true">Company <input type="text" name="company" tabindex="-1" autocomplete="off" /></label>
         <input type="email" name="email" required autocomplete="email" placeholder="you@example.com" aria-label="Email address" />
         <button class="btn brand-btn" type="submit">Tell me when</button>
       </form>
       <p role="status" id="waitlist-status"></p>
-      <p class="fine" style="margin-top:4px">We'll email you when they arrive. Nothing else, and every email has a link to leave the list. <a href="privacy/#waitlist">How we handle your email</a>.</p>
+      <p class="fine" style="margin-top:4px">We'll email you when Pro arrives. Nothing else, and every email has a link to leave the list. <a href="privacy/#waitlist">How we handle your email</a>.</p>
     </div>
   </section>
 
@@ -258,7 +265,7 @@
         });
         if (res.ok) {
           form.reset();
-          say("You're on the list. We'll email you when they arrive.");
+          say("You're on the list. We'll email you when Pro arrives.");
         } else if (res.status === 400) say("That doesn't look like an email address.");
         else if (res.status === 429) say("Too many tries from this network. Try again in a minute.");
         else say("That didn't work. Try again later.");
