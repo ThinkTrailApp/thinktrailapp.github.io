@@ -1,0 +1,52 @@
+name: Report a bug
+description: Something in ThinkTrail isn't working as it should.
+title: "Bug: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for telling us. Issues are public, so please leave out API keys, page text, and the sites or goals you'd rather keep private.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What you did, what you saw, and what you expected instead.
+      placeholder: "I pressed Continue on a session, and History showed only the new part's time."
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: How can we see it happen?
+      description: The steps, if you know them.
+      placeholder: |
+        1. Record a session for a few minutes
+        2. Stop, then press Continue
+        3. ...
+  - type: dropdown
+    id: method
+    attributes:
+      label: How are your sessions analyzed?
+      description: Settings → Analysis.
+      options:
+        - Free credits
+        - On this computer (Gemini Nano)
+        - My own AI key
+        - Not sure
+  - type: input
+    id: version
+    attributes:
+      label: ThinkTrail version
+      description: Shown in chrome://extensions under ThinkTrail.
+      placeholder: "1.1.0"
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and operating system
+      placeholder: "Chrome 142 on macOS 15"
+  - type: textarea
+    id: more
+    attributes:
+      label: Anything else?
+      description: A screenshot helps. Cover anything private first.

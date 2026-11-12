@@ -69,6 +69,9 @@
   .route p { margin: 0 0 8px; color: var(--ink-2); font-size: 15.5px; }
   .routes.four { grid-template-columns: repeat(2, 1fr); }
   .route.lead { border-color: var(--brand); }
+  a.route { display: block; color: inherit; text-decoration: none; transition: border-color .15s, background .15s; }
+  a.route:hover, a.route:focus-visible { border-color: var(--ink-3); background: var(--surface); }
+  a.route .go { color: var(--ink); font-weight: 650; font-size: 15.5px; }
   .waitlist { background: var(--surface); border-radius: 18px; padding: 32px; max-width: 760px; }
   .waitlist form { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
   .waitlist input[type=email] { flex: 1 1 260px; min-width: 0; font: inherit; padding: 12px 14px; border-radius: 11px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); }
@@ -97,7 +100,7 @@
 <div class="wrap">
   <nav>
     <a class="brand" href="#"><img src="assets/logo.svg" alt="" />ThinkTrail</a>
-    <div class="links"><a href="#how">How it works</a><a href="#install">Install</a><a href="#use">Using it</a><a href="#later">Coming soon</a><a href="privacy/">Privacy</a><a href="#faq">FAQ</a></div>
+    <div class="links"><a href="#how">How it works</a><a href="#install">Install</a><a href="#use">Using it</a><a href="#later">Coming soon</a><a href="privacy/">Privacy</a><a href="#faq">FAQ</a><a href="#contact">Contact</a></div>
   </nav>
 
   <header class="hero">
@@ -236,12 +239,38 @@
     <details><summary>Does it work on my phone?</summary><p>No. Chrome extensions only run on desktop Chrome and other desktop Chromium browsers.</p></details>
     <details><summary>Does it see other apps?</summary><p>No, only Chrome. Time in other apps counts as away.</p></details>
     <details><summary>Something looks wrong in a report.</summary><p>Change any activity's label and the numbers update. Or press <b>Analyze again</b> at the bottom of the report.</p></details>
-    <details><summary>How do I report a bug or ask for a feature?</summary><p>Open an issue on <a href="https://github.com/ThinkTrailApp/thinktrailapp.github.io/issues">GitHub</a>.</p></details>
+    <details><summary>How do I report a bug or ask for a feature?</summary><p>Use one of the forms under <a href="#contact">Contact us</a> below.</p></details>
+  </section>
+
+  <section id="contact">
+    <h2>Contact us</h2>
+    <p class="sub">Found a bug, want something added, or have a question? Tell us on GitHub. A free GitHub account is all you need, and we read every message.</p>
+    <div class="routes">
+      <a class="route" href="https://github.com/ThinkTrailApp/thinktrailapp.github.io/issues/new?template=bug.yml">
+        <span class="tag">Something's wrong</span>
+        <h3>Report a bug</h3>
+        <p>What happened, and what you expected instead.</p>
+        <span class="go">Report a bug →</span>
+      </a>
+      <a class="route" href="https://github.com/ThinkTrailApp/thinktrailapp.github.io/issues/new?template=feature.yml">
+        <span class="tag">An idea</span>
+        <h3>Request a feature</h3>
+        <p>What you'd like ThinkTrail to do, and why it would help.</p>
+        <span class="go">Suggest it →</span>
+      </a>
+      <a class="route" href="https://github.com/ThinkTrailApp/thinktrailapp.github.io/issues/new?template=question.yml">
+        <span class="tag">Anything else</span>
+        <h3>Ask a question</h3>
+        <p>About using ThinkTrail, your data, or Pro.</p>
+        <span class="go">Ask →</span>
+      </a>
+    </div>
+    <p class="fine">Messages on GitHub are public, so please leave out API keys, page text and anything private. <a href="https://github.com/ThinkTrailApp/thinktrailapp.github.io/issues">See what others have asked</a>.</p>
   </section>
 
   <footer>
     <span>ThinkTrail 1.1.0</span>
-    <span><a href="privacy/">Privacy</a> · <a href="https://github.com/ThinkTrailApp/thinktrailapp.github.io">GitHub</a> · Gemini and Chrome are trademarks of Google LLC.</span>
+    <span><a href="privacy/">Privacy</a> · <a href="#contact">Contact</a> · <a href="https://github.com/ThinkTrailApp/thinktrailapp.github.io">GitHub</a> · Gemini and Chrome are trademarks of Google LLC.</span>
   </footer>
 </div>
 <script>

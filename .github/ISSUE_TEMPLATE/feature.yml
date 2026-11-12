@@ -1,0 +1,16 @@
+name: Request a feature
+description: Something you'd like ThinkTrail to do.
+title: "Idea: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would you like ThinkTrail to do?
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: How would it help you?
+      description: What you're trying to do, and what gets in the way today.
