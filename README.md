@@ -4,7 +4,7 @@ Say what a browsing session is for, press Record, and see how much of your time 
 
 **Website:** https://thinktrailapp.github.io/
 
-ThinkTrail is coming soon to the Chrome Web Store. Watch this repository to hear when it launches.
+**Install:** [ThinkTrail on the Chrome Web Store](https://chromewebstore.google.com/detail/ThinkTrail/jhhonjogafnnpogchehgnihnkkpoekkp). It's free.
 
 ## Feedback
 
