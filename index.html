@@ -2,6 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N5QN7HXZ');</script>
+<!-- End Google Tag Manager -->
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>ThinkTrail: see where your browsing time goes</title>
 <meta name="description" content="A Chrome extension: say what a session is for, press Record, and see how much of your time served that goal, with study notes from what you read. Free." />
@@ -97,10 +104,14 @@
 </style>
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N5QN7HXZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 <div class="wrap">
   <nav>
     <a class="brand" href="#"><img src="assets/logo.svg" alt="" />ThinkTrail</a>
-    <div class="links"><a href="#how">How it works</a><a href="#install">Install</a><a href="#use">Using it</a><a href="#later">Coming soon</a><a href="privacy/">Privacy</a><a href="#faq">FAQ</a><a href="#contact">Contact</a></div>
+    <div class="links"><a href="#how">How it works</a><a href="#install">Install</a><a href="#use">Using it</a><a href="#later">Pro</a><a href="privacy/">Privacy</a><a href="#faq">FAQ</a><a href="#contact">Contact</a></div>
   </nav>
 
   <header class="hero">
@@ -108,7 +119,7 @@
     <p class="lede">Say what a session is for, press Record, and browse. When you stop, ThinkTrail shows how much of your time served that goal, what pulled you away, and study notes from what you read.</p>
     <div class="ctas">
       <a class="btn brand-btn" href="https://chromewebstore.google.com/detail/ThinkTrail/jhhonjogafnnpogchehgnihnkkpoekkp">Add to Chrome, it's free</a>
-      <a class="btn ghost" href="#later">Coming soon: Pro</a>
+      <a class="btn ghost" href="#later">Pro: free for now</a>
     </div>
     <p class="fine">Free. For desktop Chrome and other Chromium browsers.</p>
     <div class="video">
@@ -139,6 +150,7 @@
       <div class="copy">
         <h3>Notes from what you actually read</h3>
         <p>Key takeaways, terms and open questions, written from the pages that served your goal. Download them as Markdown for Obsidian, Notion or anywhere else.</p>
+        <p>Want to remember it? Press Make flashcards, and the AI picks the few things worth reviewing, as quick questions brought back just before you'd forget them.</p>
       </div>
       <div class="shot"><img src="assets/notes.png?v=3" alt="Study notes with takeaways, key terms and an open question" loading="lazy" /></div>
     </div>
@@ -153,7 +165,7 @@
       <div class="copy">
         <h3>Your month, in one place</h3>
         <p>History colors each day by how focused it was, and shows what you learned most, where the time went, and the sites you drift to.</p>
-        <p>Haven't recorded yet? Import a day from your Chrome history and see where it went.</p>
+        <p>Forgot to record? Sync a day from your Chrome history, and it fills in around the sessions you did record.</p>
       </div>
       <div class="shot"><img src="assets/history.png?v=3" alt="The History page with a month calendar colored by focus, topics learned and top sites" loading="lazy" /></div>
     </div>
@@ -211,14 +223,19 @@
 
   <section id="later">
     <div class="waitlist">
-      <h2>Coming soon: ThinkTrail Pro</h2>
-      <p class="sub" style="margin:0 0 14px">Everything above stays free. Pro adds:</p>
+      <h2>ThinkTrail Pro: free for now</h2>
+      <p class="sub" style="margin:0 0 14px">These are in ThinkTrail today, free for everyone while Pro is on the way:</p>
       <ul class="plain pro-list">
-        <li><b>Notes-app sync.</b> Every session and its notes go to Obsidian, Logseq, a Markdown folder or Notion by themselves, linked by concept.</li>
-        <li><b>Flashcards and a Learn tab.</b> Fill-in-the-blank cards made from your notes, brought back for review just before you'd forget them.</li>        <li><b>Claude Code.</b> Hand sessions to Claude Code, which writes the analysis and notes.</li>
+        <li><b>Notes-app sync.</b> Every session and its notes go to Obsidian, Logseq, a Markdown folder or Notion by themselves.</li>
+        <li><b>Flashcards.</b> When you want them, the AI picks what's worth remembering from a goal session, and the Learn tab brings it back for review.</li>
+        <li><b>Nudges.</b> Your goal shows when you open a distracting site, and Trail pops up if you stay too long.</li>
+      </ul>
+      <p class="sub" style="margin:14px 0 8px">Coming next:</p>
+      <ul class="plain pro-list">
+        <li><b>Claude Code.</b> Hand sessions to Claude Code, which writes the analysis and notes.</li>
         <li><b>More AI analysis.</b> Many more analyzed sessions a day than the free 10.</li>
       </ul>
-      <p class="sub" style="margin:14px 0 0">Leave your email to hear when it arrives.</p>
+      <p class="sub" style="margin:14px 0 0">Leave your email to hear when they arrive.</p>
       <form id="waitlist-form" novalidate>
         <label class="trap" aria-hidden="true">Company <input type="text" name="company" tabindex="-1" autocomplete="off" /></label>
         <input type="email" name="email" required autocomplete="email" placeholder="you@example.com" aria-label="Email address" />
